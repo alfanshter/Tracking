@@ -147,7 +147,6 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
     private val directionsRouteList: MutableList<DirectionsRoute> = ArrayList()
     lateinit var recyclerView: RecyclerView
     //====================================================================
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -178,9 +177,10 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
         }
         butonnavigasi.isEnabled = true
         butonnavigasi.setBackgroundResource(R.color.mapboxBlue)
-
-
-
+        if (alfan == true)
+        {
+            toast(origin.toString())
+        }
         return view
 
     }
@@ -257,8 +257,7 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
                     PERSON_LAYER_ID
                 )
         ) {
-            getRoutesToAllPoints()
-            initRecyclerView()
+
 
             // Set the latitude and longitude values for the image's four corners
             val quad = LatLngQuad(
@@ -280,6 +279,8 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
             LoadGeoJson(this).execute()
             enableLocationComponent(it)
             addDestinationIconSymbolLayer(it)
+            getRoutesToAllPoints()
+            initRecyclerView()
             mapboxMap.addOnMapClickListener(this)
 
 
@@ -376,6 +377,7 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
      * Loop through the possible destination list of LatLng locations and get
      * the route for each destination.
      */
+    //perulangan fungsi mengambil beberapa latlng sesuai
     private fun getRoutesToAllPoints() {
         for (singleLatLng in possibleDestinations) {
             getRouterecycler(Point.fromLngLat(singleLatLng.longitude, singleLatLng.latitude))
@@ -391,41 +393,45 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
 
     private fun getRouterecycler(destination: Point) {
         //ambil function lokasi sekarnag
-       // origin = Point.fromLngLat( locationComponent.lastKnownLocation!!.longitude,locationComponent.lastKnownLocation!!.latitude)
+
         val client = MapboxDirections.builder()
-            .origin(origin)
-            .destination(destination)
-            .overview(DirectionsCriteria.OVERVIEW_FULL)
-            .profile(DirectionsCriteria.PROFILE_DRIVING)
+        NavigationRoute.builder(context?.applicationContext)
             .accessToken(getString(R.string.access_token))
+            .origin(origin)
+            .profile(DirectionsCriteria.PROFILE_DRIVING)
+            .destination(destination)
             .build()
-        client.enqueueCall(object : Callback<DirectionsResponse> {
-            override fun onFailure(call: Call<DirectionsResponse>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onResponse(
-                call: Call<DirectionsResponse>,
-                response: Response<DirectionsResponse>
-            ) {
-                if (response.body() == null) {
-                    Log.d(
-                        TAG,
-                        "No routes found, make sure you set the right user and access token."
-                    )
-
-                    return
-                } else if (response.body()!!.routes().size < 1) {
-                    Log.d(TAG, "No routes found")
-                    return
+            .getRoute(object : Callback<DirectionsResponse> {
+                @SuppressLint("LogNotTimber")
+                override fun onFailure(call: Call<DirectionsResponse>, t: Throwable) {
+                    Log.e(TAG, "Error" + t.message)
                 }
-                directionsRouteList.add(response.body()!!.routes().get(0))
 
+                @SuppressLint("LogNotTimber")
+                override fun onResponse(
+                    @NonNull
+                    call: Call<DirectionsResponse>, @NonNull
+                    response: Response<DirectionsResponse>
+                ) {
+                    Log.d(TAG, " Response Codde :" + response.code())
 
-                //To change body of created functions use File | Settings | File Templates.
-            }
+                    if (response.body() == null) {
+                        Log.d(
+                            TAG,
+                            "No routes found, make sure you set the right user and access token."
+                        )
 
-        })
+                        return
+                    } else if (response.body()!!.routes().size < 1) {
+                        Log.d(TAG, "No routes found")
+                        return
+                    }
+                    currentRoute
+                    directionsRouteList.add(response.body()!!.routes().get(0))
+
+                    //To change body of created functions use File | Settings | File Templates.
+                }
+            })
     }
 
     /**
@@ -593,17 +599,6 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
     }
     //===================END RECYCLERVIEW===========================
 
-    fun startNavigation() {
-        if (currentRoute == null) {
-            return
-        }
-
-        var options = NavigationViewOptions.builder()
-            .directionsRoute(currentRoute)
-            .shouldSimulateRoute(true)
-
-
-    }
 
 
     override fun onExplanationNeeded(permissionsToExplain: List<String>) {
@@ -621,18 +616,20 @@ class TrackingFragment : Fragment(), OnMapReadyCallback, PermissionsListener,
         }
     }
 
+var alfan = false
+
     override fun onMapClick(point: LatLng): Boolean {
         var destinationPoint = Point.fromLngLat(point.longitude, point.latitude)
-        var originPoint = Point.fromLngLat(
+         origin = Point.fromLngLat(
             locationComponent.lastKnownLocation!!.longitude,
             locationComponent.lastKnownLocation!!.latitude
         )
-        toast(destinationPoint.toString())
         //meload marker pada saat di click
         mapboxMap.style?.getSourceAs<GeoJsonSource>("destination-source-id")
             ?.setGeoJson(Feature.fromGeometry(destinationPoint))
         //===============================
-        getRoute(originPoint, destinationPoint)
+        getRoute(origin, destinationPoint)
+        alfan = true
         return true
     }
 

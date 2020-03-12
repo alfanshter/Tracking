@@ -30,7 +30,7 @@ class Loading : AppCompatActivity() {
                 if (Value == loading.max) {
                     Toast.makeText(applicationContext, "Loading Selesai", Toast.LENGTH_SHORT)
                         .show()
-                    startActivity<Login>()
+                    startActivity<Tracking_Rombongan>()
                     finish()
                 }
                 Value++

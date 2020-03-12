@@ -54,7 +54,7 @@ class Tracking_Rombongan : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_dashboard -> {
                 mainPresenter.changeFragment(supportFragmentManager,
-                    DashboardFragment(),R.id.nav_host_fragment)
+                    TrackingFragment(),R.id.nav_host_fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_home -> {
@@ -87,33 +87,10 @@ class Tracking_Rombongan : AppCompatActivity() {
 
         }
 */
-        mAuth = FirebaseAuth.getInstance()
 
-        sessionManager = SessionManager(this)
-        setSupportActionBar(toolbar)
-        val actionBar = supportActionBar
-        actionBar?.title = "Hello Toolbar"
-        auth = FirebaseAuth.getInstance()
-        mFirestore = FirebaseFirestore.getInstance()
-        mUserId = mAuth!!.currentUser!!.uid
-
-        mFirestore!!.collection("Users").document(mUserId!!).get()
-            .addOnSuccessListener { documentSnapshot ->
-                val user_email = documentSnapshot.getString("name")
-                val user_image = documentSnapshot.getString("image")
-                val user_nama = documentSnapshot.getString("nama")
-                nama_drawer.text = user_email
-                email_drawer.text = user_nama
-                val placeholderOption =
-                    RequestOptions()
-                placeholderOption.placeholder(R.drawable.username)
-                Glide.with(container.context).setDefaultRequestOptions(placeholderOption)
-                    .load(user_image).into(gambardrawer)
-            }
 
 
         //upload info
-        referencebaru = FirebaseDatabase.getInstance().reference.child("Selecta").child("Users")
         /*referencebaru.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
 
@@ -183,7 +160,7 @@ class Tracking_Rombongan : AppCompatActivity() {
         }
         mainPresenter = MainPresenter()
         mainPresenter.changeFragment(supportFragmentManager,
-            DashboardFragment(),R.id.nav_host_fragment)
+            TrackingFragment(),R.id.nav_host_fragment)
         nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     }
