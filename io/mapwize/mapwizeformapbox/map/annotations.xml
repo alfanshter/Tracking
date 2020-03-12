@@ -1,0 +1,5 @@
+<root>
+    <item name='io.mapwize.mapwizeformapbox.map.MapwizePlugin'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>

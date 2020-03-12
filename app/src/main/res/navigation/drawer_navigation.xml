@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+   >
+
+    <fragment
+        android:id="@+id/navigation_generatedrawer"
+        android:name="com.alfanshter.jatimpark.ui.generate.GenerateCode"
+        android:label="@string/title_invite"
+        tools:layout="@layout/generate_code_fragment" />
+
+
+
+
+</navigation>

@@ -1,0 +1,2 @@
+include ':app', ':gpslocationprovider', ':sinch-android-rtc-3.17.1'
+rootProject.name='jatimpark'

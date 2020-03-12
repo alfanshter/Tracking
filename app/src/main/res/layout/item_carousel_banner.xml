@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:attrs="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.viewpager.widget.ViewPager
+    android:id="@+id/viewPagerBanner"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:focusableInTouchMode="true"
+    />
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        app:piv_animationType="scale"
+        app:piv_dynamicCount="true"
+        app:piv_selectedColor="@color/colorPrimary"
+        app:piv_unselectedColor="#616161"
+        attrs:piv_padding="12dp"
+        attrs:piv_radius="8dp"/>
+
+        <Button
+            android:id="@+id/btnSemuaPromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:text="Semua Promo"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

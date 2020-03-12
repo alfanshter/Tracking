@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">jatimpark</string>
+    <string name="access_token">pk.eyJ1Ijoic3RyYWlqaW4xMCIsImEiOiJjazR1bzFwMzcwMTFrM21sbjdnaDgzbTZvIn0.27BFMsM_k6zW4J1CGEBLNw</string>
+    <string name="user_location_permission_explanation">This app needs location permissions in order to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+    <string name="toast_instruction">Tap on cards below</string>
+    <string name="rv_directions_route_card_name">Wahana #%1$d</string>
+    <string name="rv_directions_route_available_table_info">%1$d tables available</string>
+    <string name="change_style_maps">Change style maps</string>
+
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
+
+    <string name="title_activity_menu_drawer" tools:ignore="ExtraTranslation">MenuDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="logout">Logout</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_drawer_menu">DrawerMenu</string>
+    <string name="title_activity_menu_baru">MenuBaru</string>
+    <string name="title_activity_tracking__rombongan">Tracking_Rombongan</string>
+    <string name="title_peta">Peta</string>
+    <string name="title_sharing">Sharing</string>
+    <string name="title_invite">Invite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="generate">generate</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="call">CALL</string>
+    <string name="enter_partner_id">Enter Partner ID</string>
+    <string name="msg_token_fmt">oalah</string>
+    <string name="default_notification_channel_id">Tvac_CH_01</string>
+
+
+</resources>
